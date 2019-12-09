@@ -28,4 +28,4 @@ This app is still in development. There are a few quirks and bugs which have to 
 
 ## Can I modify and redistribute this app?
 
-Yes, this app is licensed under the BSD-2-Clause license, which you can find in the [LICENSE file](./LICENSE)
+Yes, this app is distributed under the BSD-2-Clause license, which you can find in the [LICENSE file](./LICENSE)
