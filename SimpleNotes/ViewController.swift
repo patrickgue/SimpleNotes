@@ -166,7 +166,7 @@ class ViewController: NSViewController {
     }
     
     func setHighlight() {
-        let fullRange = NSRange(location: 0, length: textView.textStorage!.length)
+        //let fullRange = NSRange(location: 0, length: textView.textStorage!.length)
         for paragraph in textView.textStorage!.paragraphs {
             let paragraphRange = NSRange(location: 0, length: paragraph.length)
             if paragraph.string.hasPrefix("# ") {
