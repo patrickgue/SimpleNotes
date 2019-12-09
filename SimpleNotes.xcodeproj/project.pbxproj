@@ -11,6 +11,8 @@
 		CD32DDA72395AC470029AA03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32DDA62395AC470029AA03 /* ViewController.swift */; };
 		CD32DDA92395AC4A0029AA03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD32DDA82395AC4A0029AA03 /* Assets.xcassets */; };
 		CD32DDAC2395AC4A0029AA03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD32DDAA2395AC4A0029AA03 /* Main.storyboard */; };
+		CD32DDB52395AFA70029AA03 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD32DDB42395AFA70029AA03 /* Note.swift */; };
+		CDA8774C239E51920045A3B7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8774B239E51920045A3B7 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		CD32DDAB2395AC4A0029AA03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD32DDAD2395AC4A0029AA03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD32DDAE2395AC4A0029AA03 /* SimpleNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimpleNotes.entitlements; sourceTree = "<group>"; };
+		CD32DDB42395AFA70029AA03 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		CDA8774B239E51920045A3B7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				CD32DDAA2395AC4A0029AA03 /* Main.storyboard */,
 				CD32DDAD2395AC4A0029AA03 /* Info.plist */,
 				CD32DDAE2395AC4A0029AA03 /* SimpleNotes.entitlements */,
+				CD32DDB42395AFA70029AA03 /* Note.swift */,
+				CDA8774B239E51920045A3B7 /* WelcomeViewController.swift */,
 			);
 			path = SimpleNotes;
 			sourceTree = "<group>";
@@ -133,8 +139,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA8774C239E51920045A3B7 /* WelcomeViewController.swift in Sources */,
 				CD32DDA72395AC470029AA03 /* ViewController.swift in Sources */,
 				CD32DDA52395AC470029AA03 /* AppDelegate.swift in Sources */,
+				CD32DDB52395AFA70029AA03 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +280,7 @@
 				CODE_SIGN_ENTITLEMENTS = SimpleNotes/SimpleNotes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = W89CGF52WD;
 				INFOPLIST_FILE = SimpleNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -290,6 +299,7 @@
 				CODE_SIGN_ENTITLEMENTS = SimpleNotes/SimpleNotes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = W89CGF52WD;
 				INFOPLIST_FILE = SimpleNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
