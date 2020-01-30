@@ -15,6 +15,9 @@ class ViewController: NSViewController {
     var fontSize:CGFloat = 14
     var fontStyle:String = "Monospaced"
     
+    var newNoteView:NewNoteWindowController!
+    @IBOutlet weak var notesCount: NSTextField!
+    
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var selectNoteLabel: NSTextField!
@@ -27,6 +30,8 @@ class ViewController: NSViewController {
         self.tableView.delegate = self
         self.textView.delegate = self
         
+        newNoteView = self.storyboard?.instantiateController(withIdentifier: "NewNoteView") as? NewNoteWindowController
+        newNoteView.delegate = self
         
         if NSUserDefaultsController().defaults.string(forKey: "storage.location") != nil {
             setFont()
@@ -56,8 +61,8 @@ class ViewController: NSViewController {
         }
     }
 
-    public func newNote() -> Void {
-        notesRaw.append(Note(path: "/Users/patrick/ownCloud/Notes/Untitled.md"))
+    public func newNote(title:String) -> Void {
+        notesRaw.append(Note(path: "/Users/patrick/ownCloud/Notes/"+title+".md", text: "# " + title))
         
         self.tableView.reloadData()
         search(search: "")
@@ -75,6 +80,10 @@ class ViewController: NSViewController {
                 notes.append(note)
             }
         }
+        notes.sort(by: { (a:Note, b:Note) -> Bool in
+            return a.title < b.title
+        })
+        notesCount.stringValue = String(notes.count)
         self.tableView.reloadData()
     }
     
@@ -90,6 +99,7 @@ class ViewController: NSViewController {
         for noteFile:URL in noteFiles {
             notesRaw.append(Note(path:noteFile.path))
         }
+        
         search(search: "")
 
     }
@@ -112,9 +122,10 @@ class ViewController: NSViewController {
     }
     
     
-    @IBAction func newNoteMenuBarClicked(_ sender: Any) {
-        newNote()
+    @IBAction func openNewNoteWindow(_ sender: NSButton) {
+        present(newNoteView, asPopoverRelativeTo: (sender.bounds), of: sender, preferredEdge: NSRectEdge.minX, behavior: NSPopover.Behavior.transient)
     }
+    
     @IBAction func closeNoteMenuBarClicked(_ sender: Any) {
         closeNote()
     }
@@ -238,4 +249,11 @@ extension ViewController:NSTextViewDelegate {
 
 
     
+}
+
+
+extension ViewController:CreateNoteProtocol {
+    func createNote(name: String) {
+        newNote(title: name)
+    }
 }
