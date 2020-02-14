@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14550"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -191,7 +193,7 @@
                                     <items>
                                         <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
-                                                <action selector="newNoteMenuBarClicked:" target="Ady-hI-5gd" id="XCK-cb-myD"/>
+                                                <action selector="openNewNoteWindow:" target="Ady-hI-5gd" id="Old-VB-Pv7"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
@@ -799,12 +801,87 @@
                     <window key="window" identifier="mainWindow" title="Simple Notes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="mainWindow" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="585" y="393" width="960" height="800"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1050"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="500" height="400"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
+                    <touchBar key="touchBar" id="EGC-ch-XDN">
+                        <touchBarItems>
+                            <touchBarItem id="9EZ-fH-5pC">
+                                <viewController key="viewController" id="uSu-jY-Eww">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j0t-at-5fU">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarAddDetailTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uFL-Pl-6Td">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="openNewNoteWindow:" target="Wu8-wV-qXe" id="U6w-nf-oKZ"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                            </touchBarItem>
+                            <touchBarItem id="tn5-fs-iN3">
+                                <viewController key="viewController" id="GS4-vV-j7T">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tBl-lo-eY1">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarDeleteTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fVU-3L-f1W">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="deleteNote:" target="Wu8-wV-qXe" id="emp-sQ-uZC"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                            </touchBarItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="eMW-OY-tkL"/>
+                            <touchBarItem id="LUL-Hs-7sV">
+                                <viewController key="viewController" id="4aU-Ec-aRm">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pnL-Cd-Wro">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <buttonCell key="cell" type="push" title="Mono" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YpI-Tl-72F">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="15" name="Courier"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="setFontMono:" target="Oky-zY-oP4" id="9uC-vg-bth"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                            </touchBarItem>
+                            <touchBarItem id="Ukv-gY-Nsi">
+                                <viewController key="viewController" id="avx-Nt-quX">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kqk-R3-0JV">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <buttonCell key="cell" type="push" title="Sans" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lz1-RS-1RW">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="setFontSans:" target="Oky-zY-oP4" id="c8H-9O-zci"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                            </touchBarItem>
+                            <touchBarItem id="5f5-zG-mRP">
+                                <viewController key="viewController" id="izJ-Qv-aA8">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QY5-jX-q4t">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <buttonCell key="cell" type="push" title="Serif" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9po-n6-aF2">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="14" name="Georgia"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="setFontSerif:" target="Oky-zY-oP4" id="vmh-BH-QvU"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                            </touchBarItem>
+                        </touchBarItems>
+                    </touchBar>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
@@ -883,7 +960,7 @@
                                                             <tableColumns>
                                                                 <tableColumn identifier="NoteCell" editable="NO" width="195" minWidth="40" maxWidth="1000" id="lfo-Y9-kpW">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="menu" size="11"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -972,8 +1049,8 @@
                                                 </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwH-0R-SQ2">
-                                                <rect key="frame" x="72" y="780" width="46" height="16"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <rect key="frame" x="69" y="780" width="46" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Count" id="fXx-Ve-3cx">
                                                     <font key="font" metaFont="systemBlack" size="13"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -1055,6 +1132,7 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="M9x-iR-Yaj" id="fdg-ae-UVj"/>
+                        <outlet property="newNoteButton" destination="eK4-pR-5qg" id="UKY-uv-WkA"/>
                         <outlet property="notesCount" destination="iwH-0R-SQ2" id="Vk9-dn-LAK"/>
                         <outlet property="selectNoteLabel" destination="R0l-RC-R2X" id="oci-fW-urF"/>
                         <outlet property="split" destination="sYd-IQ-i8L" id="D2X-pG-ADf"/>
@@ -1203,7 +1281,7 @@
                                                             <tableColumns>
                                                                 <tableColumn width="94" minWidth="40" maxWidth="1000" id="cTF-d8-vkw">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="menu" size="11"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -1236,7 +1314,7 @@
                                                                 </tableColumn>
                                                                 <tableColumn width="162" minWidth="40" maxWidth="1000" id="d6X-6H-umN">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="menu" size="11"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -1355,6 +1433,7 @@
         <image name="NSApplicationIcon" width="32" height="32"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSTouchBarAddDetailTemplate" width="18" height="30"/>
         <image name="NSTouchBarDeleteTemplate" width="15" height="30"/>
     </resources>
 </document>

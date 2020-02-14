@@ -21,6 +21,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var selectNoteLabel: NSTextField!
+    @IBOutlet weak var newNoteButton: NSButton!
     
     override func viewDidLoad() {
         
@@ -29,6 +30,7 @@ class ViewController: NSViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.textView.delegate = self
+        
         
         newNoteView = self.storyboard?.instantiateController(withIdentifier: "NewNoteView") as? NewNoteWindowController
         newNoteView.delegate = self
@@ -62,10 +64,11 @@ class ViewController: NSViewController {
     }
 
     public func newNote(title:String) -> Void {
-        notesRaw.append(Note(path: "/Users/patrick/ownCloud/Notes/"+title+".md", text: "# " + title))
+        notesRaw.append(Note(path: NSUserDefaultsController().defaults.string(forKey: "storage.location")! + "/"+title+".md", text: "# " + title))
         
         self.tableView.reloadData()
         search(search: "")
+        
     }
     
     @IBAction func zoomTextSize(_ sender: NSMagnificationGestureRecognizer) {
@@ -123,7 +126,7 @@ class ViewController: NSViewController {
     
     
     @IBAction func openNewNoteWindow(_ sender: NSButton) {
-        present(newNoteView, asPopoverRelativeTo: (sender.bounds), of: sender, preferredEdge: NSRectEdge.minX, behavior: NSPopover.Behavior.transient)
+        present(newNoteView, asPopoverRelativeTo: (newNoteButton.bounds), of: newNoteButton, preferredEdge: NSRectEdge.minX, behavior: NSPopover.Behavior.transient)
     }
     
     @IBAction func closeNoteMenuBarClicked(_ sender: Any) {
@@ -176,8 +179,23 @@ class ViewController: NSViewController {
         setHighlight()
     }
     
+    @IBAction func setFontMono(_ sender: Any) {
+        fontStyle = "Monospaced";
+        setFont()
+    }
+    
+    @IBAction func setFontSans(_ sender: Any) {
+        fontStyle = "Sans Serif";
+        setFont()
+    }
+    
+    @IBAction func setFontSerif(_ sender: Any) {
+        fontStyle = "Serif";
+        setFont()
+    }
+    
     func setHighlight() {
-        //let fullRange = NSRange(location: 0, length: textView.textStorage!.length)
+        let fullRange = NSRange(location: 0, length: textView.textStorage!.length)
         for paragraph in textView.textStorage!.paragraphs {
             let paragraphRange = NSRange(location: 0, length: paragraph.length)
             if paragraph.string.hasPrefix("# ") {
@@ -192,25 +210,38 @@ class ViewController: NSViewController {
             else if paragraph.string.hasPrefix("#### ") {
                 paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 14, weight: NSFont.Weight.bold)], range: paragraphRange)
             }
+            else {
+                /*for word in paragraph.characters {
+                    
+                    let wordRange = NSRange(location: 0, length: word.length)
+                    print(word.string, word.string.hasPrefix("**"))
+
+                    if word.string.hasPrefix("**") && word.string.hasSuffix("**") {
+                        word.addAttributes([.font:NSFont.systemFont(ofSize: word.font!.pointSize, weight: .bold)], range: wordRange)
+                    }
+                    else if word.string.hasPrefix("*") && word.string.hasSuffix("*") {
+                        word.addAttributes([.obliqueness: 0.1], range: wordRange)
+                    }
+                }*/
+            }
             
+            let italicsPattern = try? NSRegularExpression(pattern: " \\*[A-z0-9,.:; !-=\"'<>{}]*\\*[^\\*]", options: .useUnixLineSeparators)
+            let boldPattern = try? NSRegularExpression(pattern: "\\*\\*[A-z0-9,.:; !-=\"'<>{}]*\\*\\*", options: .useUnixLineSeparators)
+                        
+            for match:NSTextCheckingResult in (boldPattern?.matches(in: paragraph.string, options: .withoutAnchoringBounds, range: paragraphRange))! {
+                            
+                if let font = paragraph.font {
+                    
+                    NSFontManager.shared.convertWeight(true, of: font)
+                    paragraph.addAttributes([.font:  NSFontManager.shared.convert(font, toHaveTrait: .boldFontMask) ], range: match.range)
+                }
+            }
+                        
+            for match:NSTextCheckingResult in (italicsPattern?.matches(in: textView.textStorage!.string, options: .withoutAnchoringBounds, range: fullRange))! {
+                textView.textStorage!.addAttributes([NSAttributedString.Key.obliqueness:0.2], range: match.range)
+            }
             
         }
-        
-        //textView.textStorage?.addAttributes([.foregroundColor:NSColor.red], range: NSRange(location: 0, length: 10))
-        //let italicsPattern = try? NSRegularExpression(pattern: "\\*[A-z0-9,.:; !-=\"'<>{}]*\\*[^\\*]", options: .useUnixLineSeparators)
-        //let boldPattern = try? NSRegularExpression(pattern: "\\*\\*[A-z0-9,.:; !-=\"'<>{}]*\\*\\*", options: .ignoreMetacharacters)
-                    
-        /*            for match:NSTextCheckingResult in (boldPattern?.matches(in: paragraph.string, options: .withTransparentBounds, range: paragraphRange))! {
-                        
-                        if let font = paragraph.attribute(NSAttributedString.Key.font, at: match.range.location, effectiveRange: nil) as? NSFont {
-                            paragraph.addAttributes([.font:NSFont(name: font.familyName! + "-Bold", size: font.pointSize)], range: match.range)
-                        }
-                    }*/
-                    
-        /*for match:NSTextCheckingResult in (italicsPattern?.matches(in: textView.textStorage!.string, options: .withTransparentBounds, range: fullRange))! {
-            textView.textStorage.sub
-            textView.textStorage!.addAttributes([NSAttributedString.Key.obliqueness:0.4], range: match.range)
-        }*/
     }
     
     
