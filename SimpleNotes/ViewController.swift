@@ -210,20 +210,6 @@ class ViewController: NSViewController {
             else if paragraph.string.hasPrefix("#### ") {
                 paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 14, weight: NSFont.Weight.bold)], range: paragraphRange)
             }
-            else {
-                /*for word in paragraph.characters {
-                    
-                    let wordRange = NSRange(location: 0, length: word.length)
-                    print(word.string, word.string.hasPrefix("**"))
-
-                    if word.string.hasPrefix("**") && word.string.hasSuffix("**") {
-                        word.addAttributes([.font:NSFont.systemFont(ofSize: word.font!.pointSize, weight: .bold)], range: wordRange)
-                    }
-                    else if word.string.hasPrefix("*") && word.string.hasSuffix("*") {
-                        word.addAttributes([.obliqueness: 0.1], range: wordRange)
-                    }
-                }*/
-            }
             
             let italicsPattern = try? NSRegularExpression(pattern: " \\*[A-z0-9,.:; !-=\"'<>{}]*\\*[^\\*]", options: .useUnixLineSeparators)
             let boldPattern = try? NSRegularExpression(pattern: "\\*\\*[A-z0-9,.:; !-=\"'<>{}]*\\*\\*", options: .useUnixLineSeparators)
