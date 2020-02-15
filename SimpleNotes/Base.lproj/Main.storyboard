@@ -448,24 +448,19 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Font" systemMenu="font" id="aXa-aM-Jaq">
                                                 <items>
-                                                    <menuItem title="Show Fonts" keyEquivalent="t" id="Q5e-8K-NDq">
+                                                    <menuItem title="Monospace" keyEquivalent="M" id="f2N-Lt-7jE">
                                                         <connections>
-                                                            <action selector="orderFrontFontPanel:" target="YLy-65-1bz" id="WHr-nq-2xA"/>
+                                                            <action selector="setFontMono:" target="Ady-hI-5gd" id="9Db-e2-9Bu"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Bold" tag="2" keyEquivalent="b" id="GB9-OM-e27">
+                                                    <menuItem title="Sans Serif" keyEquivalent="S" id="CHh-Y8-UhC">
                                                         <connections>
-                                                            <action selector="addFontTrait:" target="YLy-65-1bz" id="hqk-hr-sYV"/>
+                                                            <action selector="setFontSans:" target="Ady-hI-5gd" id="OdY-vi-xTA"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Italic" tag="1" keyEquivalent="i" id="Vjx-xi-njq">
+                                                    <menuItem title="Serif" keyEquivalent="E" id="Mbp-F9-zES">
                                                         <connections>
-                                                            <action selector="addFontTrait:" target="YLy-65-1bz" id="IHV-OB-c03"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Underline" keyEquivalent="u" id="WRG-CD-K1S">
-                                                        <connections>
-                                                            <action selector="underline:" target="Ady-hI-5gd" id="FYS-2b-JAY"/>
+                                                            <action selector="setFontSerif:" target="Ady-hI-5gd" id="ucY-Oe-Ewx"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="5gT-KC-WSO"/>
@@ -812,7 +807,8 @@
                             <touchBarItem id="9EZ-fH-5pC">
                                 <viewController key="viewController" id="uSu-jY-Eww">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j0t-at-5fU">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarAddDetailTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uFL-Pl-6Td">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -826,7 +822,8 @@
                             <touchBarItem id="tn5-fs-iN3">
                                 <viewController key="viewController" id="GS4-vV-j7T">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tBl-lo-eY1">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarDeleteTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fVU-3L-f1W">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -841,7 +838,8 @@
                             <touchBarItem id="LUL-Hs-7sV">
                                 <viewController key="viewController" id="4aU-Ec-aRm">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pnL-Cd-Wro">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Mono" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YpI-Tl-72F">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="15" name="Courier"/>
@@ -855,7 +853,8 @@
                             <touchBarItem id="Ukv-gY-Nsi">
                                 <viewController key="viewController" id="avx-Nt-quX">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kqk-R3-0JV">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Sans" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lz1-RS-1RW">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -869,7 +868,8 @@
                             <touchBarItem id="5f5-zG-mRP">
                                 <viewController key="viewController" id="izJ-Qv-aA8">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QY5-jX-q4t">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Serif" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9po-n6-aF2">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="14" name="Georgia"/>
@@ -899,7 +899,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vwK-wK-zEy">
-                                <rect key="frame" x="174" y="14" width="31" height="23"/>
+                                <rect key="frame" x="174.5" y="14" width="31" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sqO-0O-AmM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -960,7 +960,7 @@
                                                             <tableColumns>
                                                                 <tableColumn identifier="NoteCell" editable="NO" width="195" minWidth="40" maxWidth="1000" id="lfo-Y9-kpW">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="menu" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -1050,7 +1050,7 @@
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwH-0R-SQ2">
                                                 <rect key="frame" x="69" y="780" width="46" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Count" id="fXx-Ve-3cx">
                                                     <font key="font" metaFont="systemBlack" size="13"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -1160,9 +1160,15 @@
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="Jeq-Pg-ydq">
                                         <items>
-                                            <menuItem title="Monospaced" state="on" keyEquivalent="M" id="bgw-K5-jvI"/>
-                                            <menuItem title="Sans Serif" keyEquivalent="S" id="Csa-X9-hcq"/>
-                                            <menuItem title="Serif" keyEquivalent="E" id="gW3-am-72Y"/>
+                                            <menuItem title="Monospaced" state="on" id="bgw-K5-jvI">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Sans Serif" id="Csa-X9-hcq">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Serif" id="gW3-am-72Y">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -1281,7 +1287,7 @@
                                                             <tableColumns>
                                                                 <tableColumn width="94" minWidth="40" maxWidth="1000" id="cTF-d8-vkw">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="menu" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -1314,7 +1320,7 @@
                                                                 </tableColumn>
                                                                 <tableColumn width="162" minWidth="40" maxWidth="1000" id="d6X-6H-umN">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="menu" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
