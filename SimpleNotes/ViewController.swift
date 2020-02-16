@@ -22,6 +22,7 @@ class ViewController: NSViewController {
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var selectNoteLabel: NSTextField!
     @IBOutlet weak var newNoteButton: NSButton!
+    @IBOutlet weak var searchField: NSTextField!
     
     override func viewDidLoad() {
         
@@ -30,6 +31,7 @@ class ViewController: NSViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.textView.delegate = self
+        self.searchField.delegate = self
         
         
         newNoteView = self.storyboard?.instantiateController(withIdentifier: "NewNoteView") as? NewNoteWindowController
@@ -253,7 +255,7 @@ extension ViewController:NSTableViewDataSource, NSTableViewDelegate{
 }
 
 
-extension ViewController:NSTextViewDelegate {
+extension ViewController:NSTextViewDelegate, NSTextFieldDelegate {
     func textDidChange(_ notification: Notification) {
         resetHighliting()
         setFont()
@@ -263,6 +265,10 @@ extension ViewController:NSTextViewDelegate {
         notes[tableView.selectedRow].saveFile()
     }
     
+    func controlTextDidChange(_ obj: Notification) {
+        closeNote();
+        search(search: searchField.stringValue)
+    }
 
 
     
