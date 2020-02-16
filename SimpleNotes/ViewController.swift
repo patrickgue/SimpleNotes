@@ -211,7 +211,7 @@ class ViewController: NSViewController {
                 paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 14, weight: NSFont.Weight.bold)], range: paragraphRange)
             }
             
-            let italicsPattern = try? NSRegularExpression(pattern: " \\*[A-z0-9,.:; !-=\"'<>{}]*\\*[^\\*]", options: .useUnixLineSeparators)
+            /*let italicsPattern = try? NSRegularExpression(pattern: " \\*[A-z0-9,.:; !-=\"'<>{}]*\\*[^\\*]", options: .useUnixLineSeparators)
             let boldPattern = try? NSRegularExpression(pattern: "\\*\\*[A-z0-9,.:; !-=\"'<>{}]*\\*\\*", options: .useUnixLineSeparators)
                         
             for match:NSTextCheckingResult in (boldPattern?.matches(in: paragraph.string, options: .withoutAnchoringBounds, range: paragraphRange))! {
@@ -226,7 +226,7 @@ class ViewController: NSViewController {
             for match:NSTextCheckingResult in (italicsPattern?.matches(in: textView.textStorage!.string, options: .withoutAnchoringBounds, range: fullRange))! {
                 textView.textStorage!.addAttributes([NSAttributedString.Key.obliqueness:0.2], range: match.range)
             }
-            
+            */
         }
     }
     
