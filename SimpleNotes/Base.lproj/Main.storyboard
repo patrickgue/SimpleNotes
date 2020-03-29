@@ -61,7 +61,7 @@
                                                     <rect key="frame" x="18" y="317" width="603" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="SimpleNotes" id="Cc2-na-dFE">
-                                                        <font key="font" metaFont="systemBlack" size="36"/>
+                                                        <font key="font" size="36" name="NewYorkExtraLarge-Black"/>
                                                         <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
