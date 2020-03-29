@@ -19,10 +19,12 @@ class MDTextView: NSTextView {
         for paragraph in self.textStorage!.paragraphs {
             let paragraphRange = NSRange(location: 0, length: paragraph.length)
             if paragraph.string.hasPrefix("# ") {
-                paragraph.addAttributes([.foregroundColor:NSColor.selectedContentBackgroundColor, .font:NSFont.systemFont(ofSize: 24, weight: NSFont.Weight.black)], range: paragraphRange)
+                //paragraph.addAttributes([.foregroundColor:NSColor.selectedContentBackgroundColor, .font:NSFont.systemFont(ofSize: 24, weight: NSFont.Weight.black)], range: paragraphRange)
+                paragraph.addAttributes([.foregroundColor:NSColor.selectedContentBackgroundColor, .font: NSFont(name: "NewYorkExtraLarge-Black" , size: 24)], range: paragraphRange)
             }
             else if paragraph.string.hasPrefix("## ") {
-                paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 20, weight: NSFont.Weight.black)], range: paragraphRange)
+                //paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 20, weight: NSFont.Weight.black)], range: paragraphRange)
+                paragraph.addAttributes([.font: NSFont(name: "NewYorkExtraLarge-Black" , size: 20)], range: paragraphRange)
             }
             else if paragraph.string.hasPrefix("### ") {
                 paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 16, weight: NSFont.Weight.bold)], range: paragraphRange)
