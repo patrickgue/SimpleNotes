@@ -16,17 +16,23 @@ class ViewController: NSViewController {
     var fontStyle:String = "Monospaced"
     
     var newNoteView:NewNoteWindowController!
+    var previewPopover:NSPopover!
+    
     @IBOutlet weak var notesCount: NSTextField!
     
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet var textView: NSTextView!
+    @IBOutlet var textView: MDTextView!
     @IBOutlet weak var selectNoteLabel: NSTextField!
     @IBOutlet weak var newNoteButton: NSButton!
     @IBOutlet weak var searchField: NSTextField!
+    @IBOutlet weak var menuSplitView: NSSplitView!
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -34,9 +40,16 @@ class ViewController: NSViewController {
         self.searchField.delegate = self
         
         
+//        self.menuSplitView.setPosition(200.0, ofDividerAt: 0)
+        
         newNoteView = self.storyboard?.instantiateController(withIdentifier: "NewNoteView") as? NewNoteWindowController
         newNoteView.delegate = self
-        
+        var previewView = self.storyboard?.instantiateController(withIdentifier: "PreviewView") as? PreviewViewController
+        //self.menuSplitView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "[view(>=140,<=220)]", options: .alignAllLeading, metrics: nil, views:))
+        self.view.addConstraint(NSLayoutConstraint(item: menuSplitView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0))
+        previewPopover = NSPopover()
+        previewPopover.contentViewController = previewView
+                
         if NSUserDefaultsController().defaults.string(forKey: "storage.location") != nil {
             setFont()
             refreshNoteList()
@@ -117,12 +130,12 @@ class ViewController: NSViewController {
     
     @IBAction func selectNote(_ sender: Any) {
         if tableView.selectedRow >= 0 {
-            resetHighliting()
+            textView.resetHighliting()
             textView.string = notes[tableView.selectedRow].text
             textView.isEditable = true
             selectNoteLabel.isHidden = true
             setFont()
-            setHighlight()
+            textView.setHighlight()
         }
     }
     
@@ -178,7 +191,7 @@ class ViewController: NSViewController {
         else {
             textView.font = NSFont(name: "Georgia", size: fontSize)
         }
-        setHighlight()
+        textView.setHighlight()
     }
     
     @IBAction func setFontMono(_ sender: Any) {
@@ -196,51 +209,20 @@ class ViewController: NSViewController {
         setFont()
     }
     
-    func setHighlight() {
-        let fullRange = NSRange(location: 0, length: textView.textStorage!.length)
-        for paragraph in textView.textStorage!.paragraphs {
-            let paragraphRange = NSRange(location: 0, length: paragraph.length)
-            if paragraph.string.hasPrefix("# ") {
-                paragraph.addAttributes([.foregroundColor:NSColor.selectedContentBackgroundColor, .font:NSFont.systemFont(ofSize: 24, weight: NSFont.Weight.black)], range: paragraphRange)
-            }
-            else if paragraph.string.hasPrefix("## ") {
-                paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 20, weight: NSFont.Weight.black)], range: paragraphRange)
-            }
-            else if paragraph.string.hasPrefix("### ") {
-                paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 16, weight: NSFont.Weight.bold)], range: paragraphRange)
-            }
-            else if paragraph.string.hasPrefix("#### ") {
-                paragraph.addAttributes([.font:NSFont.systemFont(ofSize: 14, weight: NSFont.Weight.bold)], range: paragraphRange)
-            }
-            
-            /*let italicsPattern = try? NSRegularExpression(pattern: " \\*[A-z0-9,.:; !-=\"'<>{}]*\\*[^\\*]", options: .useUnixLineSeparators)
-            let boldPattern = try? NSRegularExpression(pattern: "\\*\\*[A-z0-9,.:; !-=\"'<>{}]*\\*\\*", options: .useUnixLineSeparators)
-                        
-            for match:NSTextCheckingResult in (boldPattern?.matches(in: paragraph.string, options: .withoutAnchoringBounds, range: paragraphRange))! {
-                            
-                if let font = paragraph.font {
-                    
-                    NSFontManager.shared.convertWeight(true, of: font)
-                    paragraph.addAttributes([.font:  NSFontManager.shared.convert(font, toHaveTrait: .boldFontMask) ], range: match.range)
-                }
-            }
-                        
-            for match:NSTextCheckingResult in (italicsPattern?.matches(in: textView.textStorage!.string, options: .withoutAnchoringBounds, range: fullRange))! {
-                textView.textStorage!.addAttributes([NSAttributedString.Key.obliqueness:0.2], range: match.range)
-            }
-            */
-        }
+        
+    @IBAction func showPreview(_ sender: NSButton) {
+        previewPopover.show(relativeTo: sender.bounds, of: self.view, preferredEdge: .maxX)
+
+        previewPopover.behavior = .applicationDefined;
+
     }
     
     
-    func resetHighliting() {
-        textView.textStorage?.setAttributes([.foregroundColor:NSColor.textColor], range: NSRange(location: 0, length: textView.textStorage!.length))
-    }
     
 
 }
 
-extension ViewController:NSTableViewDataSource, NSTableViewDelegate{
+extension ViewController:NSTableViewDataSource, NSTableViewDelegate, NSSplitViewDelegate{
     func numberOfRows(in tableView: NSTableView) -> Int {
         return notes.count
     }
@@ -257,9 +239,7 @@ extension ViewController:NSTableViewDataSource, NSTableViewDelegate{
 
 extension ViewController:NSTextViewDelegate, NSTextFieldDelegate {
     func textDidChange(_ notification: Notification) {
-        resetHighliting()
         setFont()
-        setHighlight()
         notes[tableView.selectedRow].text = textView.string
         notes[tableView.selectedRow].updateTitle()
         notes[tableView.selectedRow].saveFile()

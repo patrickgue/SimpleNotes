@@ -16,7 +16,9 @@
 		CD9AB19123A0E8B300C514D4 /* SourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9AB19023A0E8B300C514D4 /* SourcesViewController.swift */; };
 		CD9AB19323A0EA1F00C514D4 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9AB19223A0EA1F00C514D4 /* Source.swift */; };
 		CD9AB19723A0EC7C00C514D4 /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9AB19623A0EC7C00C514D4 /* FileModel.swift */; };
+		CDA135B023FFCDC000E49487 /* MDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA135AF23FFCDC000E49487 /* MDTextView.swift */; };
 		CDA8774C239E51920045A3B7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8774B239E51920045A3B7 /* WelcomeViewController.swift */; };
+		CDEA3B9F23FDA90F00413684 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA3B9E23FDA90F00413684 /* PreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +34,9 @@
 		CD9AB19023A0E8B300C514D4 /* SourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewController.swift; sourceTree = "<group>"; };
 		CD9AB19223A0EA1F00C514D4 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		CD9AB19623A0EC7C00C514D4 /* FileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
+		CDA135AF23FFCDC000E49487 /* MDTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDTextView.swift; sourceTree = "<group>"; };
 		CDA8774B239E51920045A3B7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		CDEA3B9E23FDA90F00413684 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,7 @@
 		CD32DDA32395AC470029AA03 /* SimpleNotes */ = {
 			isa = PBXGroup;
 			children = (
+				CDA135AE23FFCDA400E49487 /* Components */,
 				CD9AB19423A0EC4C00C514D4 /* Model */,
 				CD32DDA42395AC470029AA03 /* AppDelegate.swift */,
 				CD32DDA62395AC470029AA03 /* ViewController.swift */,
@@ -75,6 +80,7 @@
 				CDA8774B239E51920045A3B7 /* WelcomeViewController.swift */,
 				CD9AB19023A0E8B300C514D4 /* SourcesViewController.swift */,
 				CD3D103A23E3382D00E770EB /* NewNoteViewController.swift */,
+				CDEA3B9E23FDA90F00413684 /* PreviewView.swift */,
 			);
 			path = SimpleNotes;
 			sourceTree = "<group>";
@@ -87,6 +93,14 @@
 				CD9AB19623A0EC7C00C514D4 /* FileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CDA135AE23FFCDA400E49487 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CDA135AF23FFCDC000E49487 /* MDTextView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +175,8 @@
 			files = (
 				CDA8774C239E51920045A3B7 /* WelcomeViewController.swift in Sources */,
 				CD9AB19123A0E8B300C514D4 /* SourcesViewController.swift in Sources */,
+				CDA135B023FFCDC000E49487 /* MDTextView.swift in Sources */,
+				CDEA3B9F23FDA90F00413684 /* PreviewView.swift in Sources */,
 				CD9AB19723A0EC7C00C514D4 /* FileModel.swift in Sources */,
 				CD9AB19323A0EA1F00C514D4 /* Source.swift in Sources */,
 				CD32DDA72395AC470029AA03 /* ViewController.swift in Sources */,
